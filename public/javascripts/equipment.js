@@ -1,5 +1,7 @@
 var app = angular.module('GolfHotList', ['ngResource', 'ngRoute', 'ngFileUpload']);
 
+var ratings = [5, 4, 3, 2, 1];
+
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/', {
@@ -34,6 +36,7 @@ app.controller('HomeCtrl', ['$scope', '$resource', function($scope, $resource) {
 app.controller('AddCtrl', ['$scope', '$resource', '$location', 'Upload',
     function($scope, $resource, $location, Upload) {
         $scope.title = 'Add Equipment';
+        $scope.ratings = ratings;
 
         $scope.save = function() {
             var items = $resource('/api/equipment');
@@ -72,6 +75,7 @@ app.controller('EditCtrl', ['$scope', '$resource', '$location', '$routeParams', 
         items.get({ id: $routeParams.id }, function(item) {
             $scope.item = item;
             $scope.title = 'Edit Equipment';
+            $scope.ratings = ratings;
         });
 
         $scope.save = function() {
@@ -82,6 +86,11 @@ app.controller('EditCtrl', ['$scope', '$resource', '$location', '$routeParams', 
                     $location.path('/');
                 }
             });
+        };
+
+        $scope.removePhoto = function() {
+            console.log('remove photo');
+            $scope.item.fileName = null;
         };
 
         $scope.upload = function (file) {

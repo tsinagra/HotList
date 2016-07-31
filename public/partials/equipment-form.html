@@ -15,15 +15,18 @@
     </div>
     <div class="form-group">
         <label>Rating</label>
-        <input class="form-control" ng-model="item.rating"></input>
+        <select ng-model="item.rating" ng-options="x for x in ratings"></select>
+    </div>
+
+    <div class="form-group" style="position: relative">
+        <img ng-src="./images/{{item.fileName}}" ng-show="item.fileName" style="float: left" height="200" width="200">
+        <div style="position: relative; bottom: -180;">
+            <input type="button" class="btn btn-danger btn-sm" value="Remove Photo" ng-click="removePhoto()" ng-show="item.fileName"></input>
+        </div>
     </div>
 
     <div class="form-group">
-        <img ng-src="./images/{{item.fileName}}" ng-show="item.fileName" height="200" width="200">
-    </div>
-
-    <div class="form-group">
-        <input type="file" ngf-select ng-model="item.file"/>
+        <input type="file" ngf-select ng-model="item.file" style="clear: left"/>
     </div>
 
     <input type="button" class="btn btn-primary" value="Save" ng-click="save()"></input>

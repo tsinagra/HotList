@@ -74,6 +74,19 @@ router.post('/equipment/:id/image', function(req, res) {
     });
 });
 
+router.delete('/equipment/:id/image', function(req, res) {
+    var collection = db.get('equipment');
+ 
+    collection.update({ _id: req.params.id },
+    { $set:
+        {
+            fileName: null
+        }
+    }, function(err, equipment) {
+        res.json(equipment);
+    });
+});
+
 router.delete('/equipment/:id', function(req, res) {
     var collection = db.get('equipment');
     collection.remove({ _id: req.params.id }, function(err, equipment) {
