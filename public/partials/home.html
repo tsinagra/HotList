@@ -4,31 +4,31 @@
     <a href="/#/equipment/add">Add an item</a>
 </p>
 
-<div class="div-table">
-    <div class="div-table-row">
-        <div class="div-table-col" align="center">Actions</div>
-        <div class="div-table-col">
+<div class="row show-grid">
+    <div class="show-grid">
+        <div class="col-md-1">Actions</div>
+        <div class="col-md-4">
             <a href="#/" ng-click="sortType = 'name'; sortReverse = !sortReverse">
                 Name
-                <span ng-show="sortType == 'name' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span ng-show="sortType == 'name' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>                
                 <span ng-show="sortType == 'name' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
             </a>
         </div>
-        <div class="div-table-col">
-            <a href="#/" ng-click="sortType = 'sku'; sortReverse = !sortReverse">
-                SKU
-                <span ng-show="sortType == 'sku' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
-                <span ng-show="sortType == 'sku' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
-            </a>
+        <div class="col-md-3">
+                <a href="#/" ng-click="sortType = 'sku'; sortReverse = !sortReverse">
+                    SKU
+                    <span ng-show="sortType == 'sku' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span ng-show="sortType == 'sku' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                </a>
         </div>
-        <div class="div-table-col" align="center">
-            <a href="#/" ng-click="sortType = 'category'; sortReverse = !sortReverse">
-                Category
-                <span ng-show="sortType == 'category' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
-                <span ng-show="sortType == 'category' && sortReverse"" class="glyphicon glyphicon-triangle-top"></span>
-            </a>
+        <div class="col-md-2">
+                <a href="#/" ng-click="sortType = 'category'; sortReverse = !sortReverse">
+                    Category
+                    <span ng-show="sortType == 'category' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span ng-show="sortType == 'category' && sortReverse"" class="glyphicon glyphicon-triangle-top"></span>
+                </a>
         </div>
-        <div class="div-table-col" align="center">
+        <div class="col-md-2">
             <a href="#/" ng-click="sortType = 'rating'; sortReverse = !sortReverse">
                 Rating
                 <span ng-show="sortType == 'rating' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
@@ -36,24 +36,26 @@
             </a>
         </div>
     </div>
-    
-    <div class="div-table-row" ng-repeat="item in items | orderBy:sortType:sortReverse">
-        <div class="div-table-col" align="center">
-            <a href="/#/equipment/edit/{{ item._id }}">
-                <i class="glyphicon glyphicon-edit"></i>
-            </a>
-            &nbsp;
-            <a href="/#/equipment/delete/{{ item._id }}">
-                <i class="glyphicon glyphicon-remove"></i>
-            </a>
+
+    <div class="show-grid">
+        <div class="show-grid" ng-repeat="item in items | orderBy:sortType:sortReverse">
+            <div class="col-md-1" align="center">
+                <a href="/#/equipment/edit/{{ item._id }}">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                &nbsp;
+                <a href="/#/equipment/delete/{{ item._id }}">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/#/equipment/edit/{{ item._id }}"> 
+                    {{ item.name }}
+                </a>
+            </div>
+            <div class="col-md-3">{{ item.sku }}</div>
+            <div class="col-md-2" align="center">{{ item.category }}</div>
+            <div class="col-md-2" align="center">{{ item.rating|number }}</div>
         </div>
-        <div class="div-table-col">
-            <a href="/#/equipment/edit/{{ item._id }}"> 
-                {{ item.name }}
-            </a>
-        </div>
-        <div class="div-table-col">{{ item.sku }}</div>
-        <div class="div-table-col" align="center">{{ item.category }}</div>
-        <div class="div-table-col" align="center">{{ item.rating|number }}</div>
     </div>
 </div>
