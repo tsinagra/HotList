@@ -1,22 +1,26 @@
 <h1>{{ title }}</h1>
 
-<form name="equipmentForm">
+<form name="equipForm" novalidate>
     <div class="row show-grid">
-        <div class="col-md-12">
+        <div class="col-md-12" ng-class="equipForm.name.$invalid && !equipForm.name.$pristine ? 'has-error' : ''">
             <label>Name</label>
-            <input class="form-control" ng-model="item.name"></input>
+            <input class="form-control" name="name" ng-model="item.name" required></input>
+            <p ng-show="equipForm.name.$invalid && !equipForm.name.$pristine">Item Name is required.</p>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" ng-class="equipForm.sku.$invalid && !equipForm.sku.$pristine ? 'has-error' : ''">
             <label>SKU</label>
-            <input class="form-control" ng-model="item.sku"></input>
+            <input class="form-control" name="sku" ng-model="item.sku" required></input>
+            <p ng-show="equipForm.sku.$invalid && !equipForm.sku.$pristine" class="has-error">SKU is required.</p>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" ng-class="equipForm.category.$invalid && equipForm.category.$pristine ? 'has-error' : ''">
             <label>Category</label>
-            <input class="form-control" ng-model="item.category"></input>
+            <select ng-model="item.category" name="category" ng-options="x for x in categories" required></select>
+            <p ng-show="equipForm.category.$invalid && !equipForm.category.$pristine" class="has-error">Category is required.</p>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" ng-class="equipForm.rating.$invalid && equipForm.rating.$pristine ? 'has-error' : ''">
             <label>Rating</label>
-            <select ng-model="item.rating" ng-options="x for x in ratings"></select>
+            <select ng-model="item.rating" name="rating" ng-options="x for x in ratings" required></select>
+            <p ng-show="equipForm.rating.$invalid && !equipForm.rating.$pristine" class="has-error">Rating is required.</p>
         </div>
         <div class="col-md-12">
             <img ng-src="./images/{{item.fileName}}" ng-show="item.fileName" style="float: left" height="200" width="200">
@@ -27,8 +31,8 @@
                 <input type="file" ngf-select ng-model="item.file" style="clear: left"/>
             </div>
         </div>
-        <div class="col-md-12">
-            <input type="button" class="btn btn-primary" value="Save" ng-click="save()"></input>
+        <div class="col-md-12">ca
+            <input type="button" class="btn btn-primary" value="Save" ng-click="save()" ng-disabled="equipForm.$invalid"></input>
             &nbsp;&nbsp;<a href="/#/">Back</a>
         </div>
     </div>
