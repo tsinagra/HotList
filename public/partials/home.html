@@ -54,7 +54,8 @@
                 </a>
             </div>
             <div class="col-md-3">{{ item.sku }}</div>
-            <div class="col-md-2" align="center">{{ item.category }}</div>
+            <!--<div class="col-md-2" align="center">{{ item.category }}</div>-->
+            <div class="col-md-2" align="center">{{ (categories | filter : {id : item.category})[0].name }}</div>
             <div class="col-md-2" align="center">{{ item.rating|number }}</div>
         </div>
     </div>

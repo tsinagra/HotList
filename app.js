@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var equipments = require('./routes/equipments');
+var categories = require('./routes/categories');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api', equipments);
+app.use('/api', categories);
 app.use('/scripts', express.static(__dirname + '/node_modules/ng-file-upload/dist/'));
 
 // catch 404 and forward to error handler
