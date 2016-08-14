@@ -2,9 +2,6 @@ var express = require('express');
 var router = express.Router();
 var equip = require('../controllers/equipments');
 
-var monk = require('monk');
-var db = monk('localhost:27017/hotlist');
-
 router.get('/equipment', equip.findAll);
 router.get('/equipment/:id', equip.findById);
 router.post('/equipment', equip.add);

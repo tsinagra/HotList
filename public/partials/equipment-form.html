@@ -1,26 +1,22 @@
 <h1>{{ title }}</h1>
 
-<form name="equipForm" novalidate>
+<form name="equipmentForm">
     <div class="row show-grid">
-        <div class="col-md-12" ng-class="equipForm.name.$invalid && !equipForm.name.$pristine ? 'has-error' : ''">
+        <div class="col-md-12">
             <label>Name</label>
-            <input class="form-control" name="name" ng-model="item.name" required></input>
-            <p ng-show="equipForm.name.$invalid && !equipForm.name.$pristine">Item Name is required.</p>
+            <input class="form-control" ng-model="item.name"></input>
         </div>
-        <div class="col-md-12" ng-class="equipForm.sku.$invalid && !equipForm.sku.$pristine ? 'has-error' : ''">
+        <div class="col-md-12">
             <label>SKU</label>
-            <input class="form-control" name="sku" ng-model="item.sku" required></input>
-            <p ng-show="equipForm.sku.$invalid && !equipForm.sku.$pristine" class="has-error">SKU is required.</p>
+            <input class="form-control" ng-model="item.sku"></input>
         </div>
-        <div class="col-md-12" ng-class="equipForm.category.$invalid && equipForm.category.$pristine ? 'has-error' : ''">
+        <div class="col-md-12">
             <label>Category</label>
-            <select ng-model="item.category" name="category" ng-options="x for x in categories" required></select>
-            <p ng-show="equipForm.category.$invalid && !equipForm.category.$pristine" class="has-error">Category is required.</p>
+            <select ng-model="item.category" ng-options="cat.id as cat.name for cat in categories"></select>
         </div>
-        <div class="col-md-12" ng-class="equipForm.rating.$invalid && equipForm.rating.$pristine ? 'has-error' : ''">
+        <div class="col-md-12">
             <label>Rating</label>
-            <select ng-model="item.rating" name="rating" ng-options="x for x in ratings" required></select>
-            <p ng-show="equipForm.rating.$invalid && !equipForm.rating.$pristine" class="has-error">Rating is required.</p>
+            <select ng-model="item.rating" ng-options="x for x in ratings"></select>
         </div>
         <div class="col-md-12">
             <img ng-src="./images/{{item.fileName}}" ng-show="item.fileName" style="float: left" height="200" width="200">
@@ -32,7 +28,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <input type="button" class="btn btn-primary" value="Save" ng-click="save()" ng-disabled="equipForm.$invalid"></input>
+            <input type="button" class="btn btn-primary" value="Save" ng-click="save()"></input>
             &nbsp;&nbsp;<a href="/#/">Back</a>
         </div>
     </div>

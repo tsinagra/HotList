@@ -25,18 +25,26 @@ app.config(['$routeProvider', function($routeProvider) {
 
 app.controller('HomeCtrl', ['$scope', '$resource', function($scope, $resource) {
     var items = $resource('/api/equipment');
+    var categories = $resource('/api/category');
 
     items.query(function(items) {
-        $scope.items = items;
-        $scope.sortType = 'name';
-        $scope.sortReverse = false;
+        categories.query(function(categories) {
+            $scope.items = items;
+            $scope.sortType = 'name';
+            $scope.sortReverse = false;
+            $scope.categories = categories;
+        });
     });
 }]);
 
 app.controller('AddCtrl', ['$scope', '$resource', '$location', 'Upload',
     function($scope, $resource, $location, Upload) {
-        $scope.title = 'Add Equipment';
-        $scope.ratings = ratings;
+        var categories = $resource('/api/category');
+        categories.query(function(categories) {
+            $scope.title = 'Add Equipment';
+            $scope.ratings = ratings;
+            $scope.categories = categories;
+        });
 
         $scope.save = function() {
             var items = $resource('/api/equipment');
@@ -71,11 +79,15 @@ app.controller('EditCtrl', ['$scope', '$resource', '$location', '$routeParams', 
         var items = $resource('/api/equipment/:id', { id: '@_id' }, {
             update: { method: 'PUT'}
         });
-
+        var settings = $resource('/api/category');
+        
         items.get({ id: $routeParams.id }, function(item) {
-            $scope.item = item;
-            $scope.title = 'Edit Equipment';
-            $scope.ratings = ratings;
+            settings.query(function(categories) {    
+                $scope.item = item;
+                $scope.title = 'Edit Equipment';
+                $scope.ratings = ratings;
+                $scope.categories = categories;
+            });
         });
 
         $scope.save = function() {
