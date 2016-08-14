@@ -6,6 +6,7 @@
 /// <reference path="globals/monk/index.d.ts" />
 /// <reference path="globals/multer/index.d.ts" />
 /// <reference path="globals/node/index.d.ts" />
+/// <reference path="globals/pg/index.d.ts" />
 /// <reference path="globals/serve-static/index.d.ts" />
 /// <reference path="globals/should/index.d.ts" />
 /// <reference path="globals/superagent/index.d.ts" />
